@@ -1,0 +1,43 @@
+<nav>
+    <div class="logo">
+        <h2>ShopSphere</h2>
+    </div>
+    {% if request.user.is_authenticated %}
+    <div class="navlinks">
+        <a href="{% url 'home' %}">Home</a>
+
+        <!-- {% if tre %}
+        <form action="">
+            <input type="submit" name="trending" value="Trending">
+        </form>
+        {% endif %} -->
+
+        <a href="{% url 'cart' %}">Cart | {{totalitem}} <i class="fa-sharp fa-solid fa-cart-shopping-fast"></i></a>
+        <a href="{% url 'profile' %}">Profile</a>
+
+        {% if connav %}
+        <a href="{% url 'contactus' %}">Contact Us</a>
+        {% endif %}
+
+        <a href="{% url 'aboutus' %}">About Us</a>
+        <div class="profile">
+            <a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i> {{request.user}}</a>
+            <a id="logout" href="{% url 'logout_' %}">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+
+    </div>
+    {% else %}
+    <div class="navlinks">
+        <a href="{% url 'home' %}">Home</a>
+
+        {% if connav %}
+        <a href="">Contact Us</a>
+        {% endif %}
+
+        <a href="">About Us</a>
+        <a href="{% url 'login_' %}">Login</a>
+        <a href="{% url 'register_' %}">Register</a>
+    </div>
+    {% endif %}
+
+</nav>

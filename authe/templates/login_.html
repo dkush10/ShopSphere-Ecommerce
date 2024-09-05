@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="login">
+    <h1>Log In</h1>
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="" class="form-label">Username</label>
+            <input type="text" class="form-control" id="exampleInputUsername" name="username">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+        </div>
+
+        <div class="button">
+            <button type="submit" class="btn btn-primary" value="login">Log In</button>
+        </div>
+
+    </form>
+    <p>If not register!
+        <a href="{% url 'register_' %}"><b>Register here</b></a>
+    </p>
+</div>
+{% endblock content %}

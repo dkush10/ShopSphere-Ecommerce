@@ -1,0 +1,69 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="checkout">
+    <h1>Enter checkout details</h1>
+    <div class="codetails">
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="fields">
+                <label for="">Full name</label>
+                {{checkoutForm.name}}
+            </div>
+
+            <div class="fields">
+                <label for="">Email address</label>
+                {{checkoutForm.email}}
+            </div>
+
+            <div class="fields">
+                <label for="">Phone number</label>
+                {{checkoutForm.phone}}
+            </div>
+
+            <div class="fields">
+                <label for="">Shipping address</label>
+                {{checkoutForm.address}}
+            </div>
+
+            <div class="fields">
+                <label for="">City</label>
+                {{checkoutForm.city}}
+            </div>
+
+            <div class="fields">
+                <label for="">State</label>
+                {{checkoutForm.state}}
+            </div>
+
+            <div class="fields">
+                <label for="">Zip code</label>
+                {{checkoutForm.zipcode}}
+            </div>
+
+            <div class="fields">
+                <label for="">Country</label>
+                {{checkoutForm.country}}
+            </div>
+
+            <div class="fields">
+                <label for="">Select payment method</label>
+                {{checkoutForm.payment}}
+            </div>
+
+            <div class="fields">
+                <label for="">Additional Comments</label>
+                {{checkoutForm.comments}}
+            </div>
+
+            <div class="buttons1">
+                <input id="submit" type="submit" value="Place Order">
+                <a href="{% url 'cart' %}" id="cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

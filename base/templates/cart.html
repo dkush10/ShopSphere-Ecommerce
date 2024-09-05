@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="cart">
+    <h2>Cart</h2>
+
+    {% if noitem %}
+
+    <h4>No item added in cart</h4>
+
+    {% else %}
+    <div class="allcart">
+        <div class="carthead">
+            <h1 id="hid">Cart items</h1>
+            <!-- <h1 id="himg">Image</h1>
+            <h1 id="hname">Name</h1> -->
+            <h1 id="hprice">Price</h1>
+            <h1 id="hq">Quantity</h1>
+            <h1 id="htp">Total Price</h1>
+            <h1 id="hri">Remove Item</h1>
+        </div>
+
+        {% for i in c %}
+
+        <div class="cartdetails">
+            <p id="id">{{i.id}}</p>
+            <div id="img">
+                <img src="{{i.image.url}}" alt="">
+            </div>
+            <p id="name">{{i.name|truncatewords:8}}</p>
+            <p id="price">{{i.price}}</p>
+
+            <p id="quantity">
+                <a id="minus" href="{% url 'quantityminus' i.id %}">-</a>
+                {{i.quantity}}
+                <a id="plus" href="{% url 'quantityplus' i.id %}">+</a>
+            </p>
+            <p id="tprice">{{i.totalprice}}</p>
+            <div id="ri">
+                <a href="{% url 'remove' i.id %}">Remove item</a>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+    <div class="totalamount">
+        <h4>Total amount: Rs. {{totalamount}}/-</h4>
+        <a href="{% url 'checkout' %}">CheckOut</a>
+    </div>
+</div>
+
+{% endblock content %}

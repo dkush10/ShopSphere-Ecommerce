@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="order-confirmation">
+    <h2>Order Confirmation</h2>
+
+    <div class="confirmation-details">
+        <h3>Thank you for your purchase, {{ user.username }}!</h3>
+        <p>Your order has been successfully placed. Below are the details of your order:</p>
+
+        <table class="order-summary">
+            <tr>
+                <th>Order Number</th>
+                <td>{{ order.order_number }}</td>
+            </tr>
+            <tr>
+                <th>Order Date</th>
+                <td>{{ order.order_date }}</td>
+            </tr>
+            <tr>
+                <th>Total Amount</th>
+                <td>${{ order.total_amount }}</td>
+            </tr>
+        </table>
+
+        <h4>Order Items</h4>
+        <table class="order-items">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.product.description }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.product.price }}</td>
+                    <td>${{ item.total_price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="shipping-info">
+            <h4>Shipping Information</h4>
+            <p><strong>Name:</strong> {{ order.shipping_info.name }}</p>
+            <p><strong>Address:</strong> {{ order.shipping_info.address }}</p>
+            <p><strong>City:</strong> {{ order.shipping_info.city }}</p>
+            <p><strong>State:</strong> {{ order.shipping_info.state }}</p>
+            <p><strong>ZIP Code:</strong> {{ order.shipping_info.zip }}</p>
+            <p><strong>Country:</strong> {{ order.shipping_info.country }}</p>
+            <p><strong>Phone:</strong> {{ order.shipping_info.phone }}</p>
+        </div>
+
+        <div class="order-actions">
+            <a href="{% url 'home' %}" class="btn btn-primary">Continue Shopping</a>
+            <a href="" class="btn btn-secondary">View Order History</a>
+        </div>
+    </div>
+
+    {% endblock content %}
